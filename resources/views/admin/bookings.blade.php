@@ -205,6 +205,15 @@
                 </div>
             </div>
             
+            <div class="filter-box" style="margin-left: auto; margin-right: 20px; display: flex; align-items: center; gap: 10px;">
+                <label for="shopFilter" style="font-size: 13px; color: var(--text-gray); font-weight: 600;">Cửa hàng:</label>
+                <select id="shopFilter" onchange="window.location.href = '?shop=' + this.value" style="background-color: var(--bg-card); color: var(--text-white); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; outline: none; cursor: pointer;">
+                    <option value="" {{ empty($shopFilter) ? 'selected' : '' }}>Tất cả</option>
+                    <option value="precamera" {{ ($shopFilter ?? '') === 'precamera' ? 'selected' : '' }}>Pre Camera</option>
+                    <option value="mewcamera" {{ ($shopFilter ?? '') === 'mewcamera' ? 'selected' : '' }}>Mew Camera</option>
+                </select>
+            </div>
+            
             <a href="{{ route('admin.logout') }}" class="btn-logout">
                 <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
             </a>
@@ -223,6 +232,7 @@
                     <thead>
                         <tr>
                             <th>Thời gian gửi</th>
+                            <th>Cửa hàng</th>
                             <th>Khách hàng</th>
                             <th>Số điện thoại</th>
                             <th>Facebook</th>
@@ -238,6 +248,13 @@
                             <tr>
                                 <td>
                                     {{ $booking->created_at->timezone('Asia/Ho_Chi_Minh')->format('d/m/Y H:i') }}
+                                </td>
+                                <td>
+                                    @if(($booking->shop ?? 'precamera') === 'mewcamera')
+                                        <span class="badge" style="background-color: rgba(255, 102, 163, 0.1); color: #ff66a3; border: 1px solid rgba(255, 102, 163, 0.2);">Mew Camera</span>
+                                    @else
+                                        <span class="badge" style="background-color: rgba(232, 168, 21, 0.1); color: var(--primary-gold); border: 1px solid rgba(232, 168, 21, 0.2);">Pre Camera</span>
+                                    @endif
                                 </td>
                                 <td><strong>{{ $booking->name }}</strong></td>
                                 <td>

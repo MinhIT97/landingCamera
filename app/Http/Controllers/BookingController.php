@@ -19,6 +19,16 @@ class BookingController extends Controller
             'message' => 'nullable|string',
         ]);
 
+        // Detect which subdomain/shop the booking came from
+        $host = $request->getHost();
+        $mewDomain = env('MEW_CAMERA_DOMAIN', 'mewcamera.gymmap.shop');
+        $shop = 'precamera';
+        if (str_contains($host, 'mewcamera') || str_contains($host, 'mew.') || $host === $mewDomain) {
+            $shop = 'mewcamera';
+        }
+
+        $validated['shop'] = $shop;
+
         Booking::create($validated);
 
         return response()->json([
@@ -51,14 +61,21 @@ class BookingController extends Controller
     }
 
     // Show booking list dashboard
-    public function index()
+    public function index(Request $request)
     {
         if (!session('admin_logged_in')) {
             return redirect()->route('admin.login');
         }
 
-        $bookings = Booking::orderBy('created_at', 'desc')->get();
-        return view('admin.bookings', compact('bookings'));
+        $shopFilter = $request->query('shop');
+        $query = Booking::orderBy('created_at', 'desc');
+
+        if ($shopFilter === 'precamera' || $shopFilter === 'mewcamera') {
+            $query->where('shop', $shopFilter);
+        }
+
+        $bookings = $query->get();
+        return view('admin.bookings', compact('bookings', 'shopFilter'));
     }
 
     // Update status

@@ -3,18 +3,34 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 
-// Landing Page
+// 1. MEW CAMERA Subdomain Group
+Route::domain(env('MEW_CAMERA_DOMAIN', 'mewcamera.gymmap.shop'))->group(function () {
+    Route::get('/', function () {
+        return view('mew_landing');
+    });
+    Route::post('/booking', [BookingController::class, 'store'])->name('mew.booking.store');
+});
+
+// 2. PRE CAMERA Subdomain Group
+Route::domain(env('PRE_CAMERA_DOMAIN', 'precamera.gymmap.shop'))->group(function () {
+    Route::get('/', function () {
+        return view('landing');
+    });
+    Route::post('/booking', [BookingController::class, 'store'])->name('pre.booking.store');
+});
+
+// Fallback / Localhost direct routes
 Route::get('/', function () {
     return view('landing');
 });
-
-// API endpoint to store bookings from form
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 
-// Admin panel routes
-Route::get('/admin/login', [BookingController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [BookingController::class, 'login'])->name('admin.login.submit');
-Route::get('/admin/bookings', [BookingController::class, 'index'])->name('admin.bookings');
-Route::post('/admin/bookings/{id}/status', [BookingController::class, 'updateStatus'])->name('admin.bookings.status');
-Route::delete('/admin/bookings/{id}', [BookingController::class, 'destroy'])->name('admin.bookings.delete');
-Route::get('/admin/logout', [BookingController::class, 'logout'])->name('admin.logout');
+// Admin panel routes (shared across domains)
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [BookingController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [BookingController::class, 'login'])->name('admin.login.submit');
+    Route::get('/bookings', [BookingController::class, 'index'])->name('admin.bookings');
+    Route::post('/bookings/{id}/status', [BookingController::class, 'updateStatus'])->name('admin.bookings.status');
+    Route::delete('/bookings/{id}', [BookingController::class, 'destroy'])->name('admin.bookings.delete');
+    Route::get('/logout', [BookingController::class, 'logout'])->name('admin.logout');
+});
