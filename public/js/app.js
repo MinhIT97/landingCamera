@@ -62,6 +62,42 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         updateSlider();
     });
+
+    // Touch Swipe Gestures for Mobile
+    let startX = 0;
+    let endX = 0;
+
+    if (track) {
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', () => {
+            const threshold = 50;
+            const cardsPerView = getCardsPerView();
+            const maxIndex = Math.max(0, cards.length - cardsPerView);
+            
+            if (startX && endX) {
+                if (startX - endX > threshold) {
+                    if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        updateSlider();
+                    }
+                } else if (endX - startX > threshold) {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSlider();
+                    }
+                }
+            }
+            startX = 0;
+            endX = 0;
+        });
+    }
     
     // Initial call
     setTimeout(updateSlider, 100);
@@ -160,6 +196,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
     
+    // 5. Mobile Hamburger Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const navMenu = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openMobileMenu() {
+        if (navMenu) navMenu.classList.add('active');
+        if (navOverlay) navOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        if (navMenu) navMenu.classList.remove('active');
+        if (navOverlay) navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeMobileMenu);
+    }
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('.nav-link').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -168,6 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // Close mobile menu when a link is clicked
+                    closeMobileMenu();
+                    
                     // Remove active from all links
                     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                     // Add active to current

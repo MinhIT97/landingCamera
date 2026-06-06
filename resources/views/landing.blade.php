@@ -29,6 +29,7 @@
 <body>
 
     <!-- Header / Navbar -->
+    <div class="nav-overlay" id="navOverlay"></div>
     <header class="navbar" id="mainHeader">
         <div class="container">
             <a href="#" class="logo" id="logoLink">
@@ -41,6 +42,12 @@
             
             <nav>
                 <ul class="nav-menu" id="navMenu">
+                    <li class="mobile-menu-header">
+                        <span class="mobile-menu-title">Danh mục</span>
+                        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </li>
                     <li><a href="#" class="nav-link active">Trang chủ</a></li>
                     <li><a href="#goithue" class="nav-link">Bảng giá</a></li>
                     <li><a href="#thutuc" class="nav-link">Thủ tục cọc</a></li>
@@ -50,9 +57,14 @@
                 </ul>
             </nav>
             
-            <button class="btn-nav-cta btn-book-trigger" data-package="Tư Vấn Đặt Lịch" id="navCtaButton">
-                Đặt lịch ngay <i class="fa-regular fa-calendar-days"></i>
-            </button>
+            <div class="navbar-actions">
+                <button class="btn-nav-cta btn-book-trigger" data-package="Tư Vấn Đặt Lịch" id="navCtaButton">
+                    <span class="btn-text">Đặt lịch ngay</span> <i class="fa-regular fa-calendar-days"></i>
+                </button>
+                <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
