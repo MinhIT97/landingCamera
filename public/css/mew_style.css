@@ -50,34 +50,34 @@
     --border-width: 1px;
 }
 
-/* ─── ROSE - Dark, fashion, Instagram ─── */
+/* ─── ROSE - Light pink, kawaii, fashion ─── */
 [data-theme="rose"] {
-    --bg: #0c0c0e;
-    --bg-card: #1a1a1e;
-    --bg-card-hover: #222228;
+    --bg: #fff5f8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fff0f4;
     --primary: #ec4899;
-    --primary-hover: #f472b6;
-    --primary-glow: rgba(236, 72, 153, 0.15);
-    --text: #ffffff;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
-    --border: #27272a;
-    --border-hover: #3f3f46;
-    --navbar-bg: rgba(12, 12, 14, 0.9);
-    --navbar-bg-scrolled: rgba(12, 12, 14, 0.97);
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-    --shadow-md: 0 8px 25px rgba(0,0,0,0.4);
-    --shadow-lg: 0 15px 40px rgba(0,0,0,0.5);
+    --primary-hover: #db2777;
+    --primary-glow: rgba(236, 72, 153, 0.12);
+    --text: #2d1520;
+    --text-secondary: #8c5f6e;
+    --text-muted: #c49aaa;
+    --border: #fad0df;
+    --border-hover: #f7a3bc;
+    --navbar-bg: rgba(255, 245, 248, 0.9);
+    --navbar-bg-scrolled: rgba(255, 245, 248, 0.97);
+    --shadow-sm: 0 2px 8px rgba(236, 72, 153, 0.06);
+    --shadow-md: 0 8px 25px rgba(236, 72, 153, 0.08);
+    --shadow-lg: 0 15px 40px rgba(236, 72, 153, 0.1);
     --shadow-glow: 0 0 25px rgba(236, 72, 153, 0.1);
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
-    --hero-radial: radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.1) 0%, rgba(12, 12, 14, 0) 60%);
+    --hero-radial: radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.08) 0%, rgba(255, 245, 248, 0) 60%);
     --particle-rgb: 236, 72, 153;
     --btn-text: #ffffff;
-    --overlay-bg: rgba(0, 0, 0, 0.7);
-    --modal-overlay-bg: rgba(0, 0, 0, 0.85);
-    --footer-bg: #08080a;
-    --input-bg: rgba(255, 255, 255, 0.03);
+    --overlay-bg: rgba(236, 72, 153, 0.2);
+    --modal-overlay-bg: rgba(236, 72, 153, 0.15);
+    --footer-bg: #fff0f4;
+    --input-bg: rgba(236, 72, 153, 0.03);
     --input-focus-bg: rgba(236, 72, 153, 0.05);
     --section-alt-bg: rgba(236, 72, 153, 0.02);
     --icon-bg: rgba(236, 72, 153, 0.05);
@@ -85,11 +85,11 @@
     --badge-bg: rgba(236, 72, 153, 0.1);
     --badge-border: rgba(236, 72, 153, 0.2);
     --responsibility-bg: rgba(239, 68, 68, 0.04);
-    --responsibility-border: rgba(239, 68, 68, 0.2);
-    --scrollbar-thumb: #3f3f46;
+    --responsibility-border: rgba(239, 68, 68, 0.15);
+    --scrollbar-thumb: #f7a3bc;
     --scrollbar-thumb-hover: #ec4899;
-    --pkg-featured-bg: linear-gradient(180deg, rgba(236, 72, 153, 0.05) 0%, rgba(26, 26, 30, 0.6) 100%), #1a1a1e;
-    --process-shadow-color: 12, 12, 14;
+    --pkg-featured-bg: linear-gradient(180deg, rgba(236, 72, 153, 0.03) 0%, rgba(255, 255, 255, 0.6) 100%), #ffffff;
+    --process-shadow-color: 255, 245, 248;
     --card-radius: 16px;
     --card-radius-sm: 12px;
     --border-width: 1px;
