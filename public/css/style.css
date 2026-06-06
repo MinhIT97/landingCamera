@@ -1627,6 +1627,20 @@ a {
         height: 38px;
         font-size: 12px;
     }
+    
+    /* Footer bottom adjustments */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 }
 
 /* --- Added for Pre Camera Specific Inventory & Policies --- */
